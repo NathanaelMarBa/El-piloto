@@ -4,21 +4,22 @@ function estacionamiento (){
     alert("Bienvenido al estacionamiento")
     var matriculas = [];
     var marcas = [];
-    var suma = 0;
-    let contador = 1;
+    var contador = 1;
+    
 
     while(contador == 1){
         let opc = prompt("Que de deseas hacer?" + "\n" + "1. Ingresar vehiculo" + "\n" + "2. Salida de vehiculo" + "\n" + "3. Ver estacionados" + "\n" + "4. Salir");
         switch(opc){
             case "1":
                 ingresarVehiculo(matriculas, marcas);
-                suma = suma + 1;
+                var total = matriculas.length;
                 break;
             case "2":
-                salidaVehiculo(matriculas, marcas, suma);
+                salidaVehiculo(matriculas, marcas);
+                var total = matriculas.length;
                 break;
             case "3":
-                autos(matriculas, marcas, suma);
+                autos(matriculas, marcas, total);
                 break;
             case "4":
                 contador = 0;
@@ -36,11 +37,10 @@ function ingresarVehiculo(matriculas, marcas){
     console.log(marcas);
 }
 
-function salidaVehiculo(matriculas, marcas, suma){
+function salidaVehiculo(matriculas, marcas){
    let matricula = prompt("Ingrese la matricula");
    let pago = 0;
    let cambio = 0;
-
     for(let i = 0; i < matriculas.length; i++){
         if(matriculas[i] == matricula){
             let horas = parseInt(prompt("Ingrese las horas"));
@@ -58,7 +58,6 @@ function salidaVehiculo(matriculas, marcas, suma){
                                     marcas.splice(i, 1);
                                 }
                             }
-                            resta = 1;
 
                         }if(pago == 100){
                             alert("Gracias por su visita");
@@ -68,7 +67,6 @@ function salidaVehiculo(matriculas, marcas, suma){
                                     marcas.splice(i, 1);
                                 }
                             }
-                            suma = suma - 1;
 
                         }if(pago < 100){
                             alert("El pago es insuficiente");
@@ -89,7 +87,6 @@ function salidaVehiculo(matriculas, marcas, suma){
                                         marcas.splice(i, 1);
                                     }
                                 }
-                                suma = suma - 1;
 
                             }if(pago == 200){
                                 alert("Gracias por su visita");
@@ -99,7 +96,6 @@ function salidaVehiculo(matriculas, marcas, suma){
                                         marcas.splice(i, 1);
                                     }
                                 }
-                                suma = suma - 1;
 
                             }if(pago < 200){
                                 alert("El pago es insuficiente")
@@ -120,7 +116,6 @@ function salidaVehiculo(matriculas, marcas, suma){
                                     marcas.splice(i, 1);
                                 }
                             }
-                            suma = suma - 1;
 
                             }if(pago == 500){
                                 alert("Gracias por su visita");
@@ -130,7 +125,6 @@ function salidaVehiculo(matriculas, marcas, suma){
                                         marcas.splice(i, 1);
                                     }
                                 }
-                                suma = suma - 1;
 
                             }if(pago < 500){
                                 alert("El pago es insuficiente")
@@ -144,12 +138,12 @@ function salidaVehiculo(matriculas, marcas, suma){
         }
     }
 
-    function autos (matriculas, marcas, suma){
+    function autos (matriculas, marcas, total){
         let opc = prompt("1. Autos en el estacinamiento" + "\n" + "2. Buscar autos por matricula" + "\n" + "3. Buscar autos por marca");
         switch (opc) {
 
             case "1":
-                alert("Hay " + suma + " autos en el estacionamiento");
+                alert("Hay " + total + " autos en el estacionamiento");
             break;
             case "2":
                 let matricula = prompt("Ingrese la matricula");
