@@ -5,6 +5,7 @@ function estacionamiento (){
     var matriculas = [];
     var marcas = [];
     var contador = 1;
+    var total = 0;
     
 
     while(contador == 1){
@@ -12,11 +13,15 @@ function estacionamiento (){
         switch(opc){
             case "1":
                 ingresarVehiculo(matriculas, marcas);
-                var total = matriculas.length;
+                total = matriculas.length;
                 break;
             case "2":
-                salidaVehiculo(matriculas, marcas);
-                var total = matriculas.length;
+                if(total == 0){
+                    alert("No hay vehiculos estacionados")
+                }else{
+                salidaVehiculo(matriculas, marcas, total);
+                total = matriculas.length;
+                }
                 break;
             case "3":
                 autos(matriculas, marcas, total);
@@ -146,21 +151,29 @@ function salidaVehiculo(matriculas, marcas){
                 alert("Hay " + total + " autos en el estacionamiento");
             break;
             case "2":
-                let matricula = prompt("Ingrese la matricula");
-                    for(let i = 0; i < matriculas.length; i++){
-                        if(matriculas[i] == matricula){
-                            alert("Matricula: " + matriculas[i] + "\n" + "Marca: " + marcas[i]);
+                if(total >0){
+                    let matricula = prompt("Ingrese la matricula");
+                        for(let i = 0; i < matriculas.length; i++){
+                            if(matriculas[i] == matricula){
+                                alert("Matricula: " + matriculas[i] + "\n" + "Marca: " + marcas[i]);
+                            }
                         }
-                    }
+                }else{
+                    alert("No hay autos en el estacionamiento");
+                }
             break;
 
             case "3":
-                let marca = prompt("Ingrese la marca");
-                    for(let i = 0; i < marcas.length; i++){
-                        if(marcas[i] == marca){
-                            alert("Matricula: " + matriculas[i] + "\n" + "Marca: " + marcas[i]);
+                if(total >0){
+                    let marca = prompt("Ingrese la marca");
+                        for(let i = 0; i < marcas.length; i++){
+                            if(marcas[i] == marca){
+                                alert("Matricula: " + matriculas[i] + "\n" + "Marca: " + marcas[i]);
+                            }
                         }
-                    }
+                }else{
+                    alert("No hay autos en el estacionamiento");
+                }
             break;
         }
 }
