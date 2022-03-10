@@ -49,7 +49,7 @@ function salidaVehiculo(matriculas, marcas){
     for(let i = 0; i < matriculas.length; i++){
         if(matriculas[i] == matricula){
             let horas = parseInt(prompt("Ingrese las horas"));
-                    if(horas >= 1 && horas <= 3){
+                    if(horas >= 1 && horas < 3){
                         alert("El monto a pagar es de $100");
                         pago = parseInt(prompt("Ingrese el pago"));
 
@@ -78,7 +78,7 @@ function salidaVehiculo(matriculas, marcas){
                         }
                     }    
 
-                        if(horas >= 4 && horas <= 5){
+                        if(horas >= 3 && horas < 6){
                             alert("El monto a pagar es de $200");
                             pago = prompt("Ingrese el pago");
 
