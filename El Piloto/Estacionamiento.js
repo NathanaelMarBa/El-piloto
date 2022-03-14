@@ -105,7 +105,7 @@ function salidaVehiculo(matriculas, marcas){
                         }
                     }    
 
-                        if(horas >= 2 && horas <= 4){
+                        if(horas >= 2.1 && horas <= 4){
                             alert("El monto a pagar es de $90");
                             pago = prompt("Ingrese el pago");
 
@@ -134,7 +134,7 @@ function salidaVehiculo(matriculas, marcas){
                             }
                         }
                         
-                        if(horas >= 4){
+                        if(horas >= 4.1){
                             alert("El monto a pagar es de $150");
                             pago = prompt("Ingrese el pago");
 
