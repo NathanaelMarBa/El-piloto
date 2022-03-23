@@ -23,6 +23,7 @@ function estacionamiento (){
                         alert("No hay vehiculos estacionados")
                     }else{
                     salidaVehiculo(matriculas, marcas, total);
+                    matriculas = matriculas;
                     total = matriculas.length;
                     }
                     break;
@@ -30,6 +31,7 @@ function estacionamiento (){
                     autos(matriculas, marcas, total);
                     break;
                 case "4":
+                    alert("Gracias por utilizar el estacionamiento el Piloto");
                     contador = 0;
              }
         }
@@ -57,8 +59,10 @@ function ingresarVehiculo(matriculas, marcas){
             if(marca == ""){
                 alert("No puedes dejar campos sin llenar")
             }else {
-                matriculas.push(matricula);
-                marcas.push(marca);
+                matriculas.push(matricula.toLowerCase());
+                marcas.push(marca.toLowerCase());
+                matriculas = matriculas.sort();
+                marcas = marcas.sort();
                 alert("Vehiculo ingresado");
                 console.log(matriculas);
                 console.log(marcas);
@@ -74,7 +78,7 @@ function salidaVehiculo(matriculas, marcas){
    let pago = 0;
    let cambio = 0;
     for(let i = 0; i < matriculas.length; i++){
-        if(matriculas[i] == matricula){
+        if(matriculas[i] == matricula.toLowerCase()){
             let horas = parseInt(prompt("Ingrese las horas"));
                     if(horas >= 0.1 && horas <= 2){
                         alert("El monto a pagar es de $40");
@@ -85,7 +89,7 @@ function salidaVehiculo(matriculas, marcas){
                             alert("Su cambio es de: " + cambio + " pesos");
                             alert("Gracias por su visita");
                             for(let i = 0; i < matriculas.length; i++){
-                                if(matriculas[i] == matricula){
+                                if(matriculas[i] == matricula.toLowerCase()){
                                     matriculas.splice(i, 1);
                                     marcas.splice(i, 1);
                                 }
@@ -94,7 +98,7 @@ function salidaVehiculo(matriculas, marcas){
                         }if(pago == 40){
                             alert("Gracias por su visita");
                             for(let i = 0; i < matriculas.length; i++){
-                                if(matriculas[i] == matricula){
+                                if(matriculas[i] == matricula.toLowerCase()){
                                     matriculas.splice(i, 1);
                                     marcas.splice(i, 1);
                                 }
@@ -114,7 +118,7 @@ function salidaVehiculo(matriculas, marcas){
                                 alert("Su cambio es de: " + cambio + " pesos");
                                 alert("Gracias por su visita");
                                 for(let i = 0; i < matriculas.length; i++){
-                                    if(matriculas[i] == matricula){
+                                    if(matriculas[i] == matricula.toLowerCase()){
                                         matriculas.splice(i, 1);
                                         marcas.splice(i, 1);
                                     }
@@ -123,7 +127,7 @@ function salidaVehiculo(matriculas, marcas){
                             }if(pago == 90){
                                 alert("Gracias por su visita");
                                 for(let i = 0; i < matriculas.length; i++){
-                                    if(matriculas[i] == matricula){
+                                    if(matriculas[i] == matricula.toLowerCase()){
                                         matriculas.splice(i, 1);
                                         marcas.splice(i, 1);
                                     }
@@ -143,7 +147,7 @@ function salidaVehiculo(matriculas, marcas){
                             alert("Su cambio es de: " + cambio + " pesos");
                             alert("Gracias por su visita");
                             for(let i = 0; i < matriculas.length; i++){
-                                if(matriculas[i] == matricula){
+                                if(matriculas[i] == matricula.toLowerCase()){
                                     matriculas.splice(i, 1);
                                     marcas.splice(i, 1);
                                 }
@@ -152,7 +156,7 @@ function salidaVehiculo(matriculas, marcas){
                             }if(pago == 150){
                                 alert("Gracias por su visita");
                                 for(let i = 0; i < matriculas.length; i++){
-                                    if(matriculas[i] == matricula){
+                                    if(matriculas[i] == matricula.toLowerCase()){
                                         matriculas.splice(i, 1);
                                         marcas.splice(i, 1);
                                     }
@@ -172,6 +176,7 @@ function salidaVehiculo(matriculas, marcas){
 
 function autos (matriculas, marcas, total){
     let opc = prompt("1. Vehiculos en el estacionamiento" + "\n" + "2. Buscar vehiculos por placa" + "\n" + "3. Buscar vehiculos por submarca");
+    let cont = 0;
     switch (opc) {
 
         case "1":
@@ -180,13 +185,25 @@ function autos (matriculas, marcas, total){
         case "2":
             if(total >0){
                 let matricula = prompt("Ingrese la placa");
-                    for(let i = 0; i < matriculas.length; i++){
-                        if(matriculas[i] == matricula){
-                            alert("Matricula: " + matriculas[i] + "\n" + "Marca: " + marcas[i]);
-                        }else{
-                            alert("Placa incorrecta")
-                        }
+                for(let i = 0; i < matriculas.length; i++){
+                    if(matriculas[i] == matricula.toLowerCase()){
+                        cont = cont + 1;
                     }
+                }
+
+                for(let i = 0; i < matriculas.length; i++){
+                    if (cont != 0){
+                        if(matriculas[i] == matricula.toLowerCase()){
+                            alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
+                        }else if(marca == ""){
+                            alert("No hay vehiculos con esa placa");
+                        }
+                    }else if(cont == 0){
+                        i = matriculas.length - 1;
+                        alert("No hay vehiculos con esa placa")
+                    }
+                        
+                }
             }else{
                 alert("No hay vehiculos en el estacionamiento");
             }
@@ -196,11 +213,23 @@ function autos (matriculas, marcas, total){
             if(total >0){
                 let marca = prompt("Ingrese la submarca");
                     for(let i = 0; i < marcas.length; i++){
-                        if(marcas[i] == marca){
-                            alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
-                        }else{
-                            alert("Submarca incorrecta");
+                        if(marcas[i] == marca.toLowerCase()){
+                            cont = cont + 1;
                         }
+                    }
+
+                    for(let i = 0; i < marcas.length; i++){
+                        if (cont != 0){
+                            if(marcas[i] == marca.toLowerCase()){
+                                alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
+                            }else if(marca == ""){
+                                alert("No hay vehiculos con esa submarca")
+                            }
+                        }else if(cont == 0){
+                            i = marcas.length - 1;
+                            alert("No hay vehiculos con esa submarca")
+                        }
+                            
                     }
             }else{
                 alert("No hay vehiculos en el estacionamiento");
