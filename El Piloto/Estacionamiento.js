@@ -166,13 +166,15 @@ function salidaVehiculo(matriculas, marcas){
                                 alert("El pago es insuficiente")
                             }
                         }
-            } else{
-                alert("Matricula Incorrecta")
-            }
+        } else if (matriculas[i] != matricula.toLowerCase()){
+            alert("Matricula Incorrecta")
+        } else if (matrcula = ""){
+            alert("No puedes dejar campos sin llenar")
+        }
             console.log(matriculas);
             console.log(marcas);
-        }
     }
+}
 
 function autos (matriculas, marcas, total){
     let opc = prompt("1. Vehiculos en el estacionamiento" + "\n" + "2. Buscar vehiculos por placa" + "\n" + "3. Buscar vehiculos por submarca");
@@ -195,7 +197,7 @@ function autos (matriculas, marcas, total){
                     if (cont != 0){
                         if(matriculas[i] == matricula.toLowerCase()){
                             alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
-                        }else if(marca == ""){
+                        }else if(matricula == ""){
                             alert("No hay vehiculos con esa placa");
                         }
                     }else if(cont == 0){
