@@ -1,7 +1,7 @@
 estacionamiento();
 
 function estacionamiento (){
-    alert("Bienvenido al estacionamiento")
+    alert("Bienvenido al estacionamiento 'El piloto'");
     var matriculas = [];
     var marcas = [];
     var contador = 1;
@@ -9,7 +9,7 @@ function estacionamiento (){
     
 
     while(contador == 1){
-        let opc = prompt("Que de deseas hacer?" + "\n" + "1. Ingresar vehiculo" + "\n" + "2. Salida de vehiculo" + "\n" + "3. Ver estacionados" + "\n" + "4. Salir");
+        let opc = prompt("Selecciona una opción" + "\n" + "1. Ingresar vehiculo" + "\n" + "2. Salida de vehiculo" + "\n" + "3. Ver estacionados" + "\n" + "4. Salir");
         if(opc == ""){
             alert("Elige una opcion por favor")
         }else{
