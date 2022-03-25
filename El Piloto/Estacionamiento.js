@@ -1,10 +1,11 @@
-estacionamiento();
+alert("Bienvenido al estacionamiento 'El piloto'");
+var contador = 1;
 
-function estacionamiento (){
-    alert("Bienvenido al estacionamiento 'El piloto'");
+estacionamiento(contador);
+
+function estacionamiento (contador){
     var matriculas = [];
     var marcas = [];
-    var contador = 1;
     var total = 0;
     
 
@@ -41,80 +42,59 @@ function estacionamiento (){
 function ingresarVehiculo(matriculas, marcas){
     let resul = true;
 
-    let matricula = prompt("Ingrese el numero de placa");
-    
-    for(let i = 0; i < matriculas.length; i++){
-        if(matriculas[i] == matricula){
-            alert("Esta placa ya fue ingresada, favor de verificarla");
-            resul = false;
-        }
-    }
-    
-    while (resul == true){
-        if(matricula == ""){
-            alert("No puedes dejar campos sin llenar")
-            break;
-        }else{
-            let marca = prompt("Ingrese la submarca");
-            if(marca == ""){
-                alert("No puedes dejar campos sin llenar")
-            }else {
-                matriculas.push(matricula.toLowerCase());
-                marcas.push(marca.toLowerCase());
-                matriculas = matriculas.sort();
-                marcas = marcas.sort();
-                alert("Vehiculo ingresado");
-                console.log(matriculas);
-                console.log(marcas);
-                break;
+    let matricula = prompt("Ingrese el numero de placa" + "\n" + "O bien si desea regresar ingrese 'r'");
+
+    if(matricula != "r"){
+        for(let i = 0; i < matriculas.length; i++){
+            if(matriculas[i] == matricula){
+                alert("Esta placa ya fue ingresada, favor de verificarla");
+                resul = false;
             }
         }
+
+        while (resul == true){
+            if(matricula == ""){
+                alert("No puedes dejar campos sin llenar")
+                break;
+            }else{
+                let marca = prompt("Ingrese la submarca");
+                if(marca == ""){
+                    alert("No puedes dejar campos sin llenar")
+                }else {
+                    matriculas.push(matricula.toLowerCase());
+                    marcas.push(marca.toLowerCase());
+                    matriculas = matriculas.sort();
+                    marcas = marcas.sort();
+                    alert("Vehiculo ingresado");
+                    console.log(matriculas);
+                    console.log(marcas);
+                    break;
+                }
+            }
+        }
+
+    }else{
+        estacionamiento();
     }
+    
         
 }
 
 function salidaVehiculo(matriculas, marcas){
-   let matricula = prompt("Ingrese la placa");
+   let matricula = prompt("Ingrese la placa" + "\n" + "O bien si desea regresar ingrese 'r'");
    let pago = 0;
    let cambio = 0;
-    for(let i = 0; i < matriculas.length; i++){
-        if(matriculas[i] == matricula.toLowerCase()){
-            let horas = parseInt(prompt("Ingrese las horas"));
-                    if(horas >= 0.1 && horas <= 2){
-                        alert("El monto a pagar es de $40");
-                        pago = parseInt(prompt("Ingrese el pago"));
 
-                        if(pago > 40){
-                            cambio = pago - 40;
-                            alert("Su cambio es de: " + cambio + " pesos");
-                            alert("Gracias por su visita");
-                            for(let i = 0; i < matriculas.length; i++){
-                                if(matriculas[i] == matricula.toLowerCase()){
-                                    matriculas.splice(i, 1);
-                                    marcas.splice(i, 1);
-                                }
-                            }
+   if(matricula != "r"){
+        for(let i = 0; i < matriculas.length; i++){
+            if(matriculas[i] == matricula.toLowerCase()){
+                let horas = parseInt(prompt("Ingrese las horas"));
+                        if(horas >= 0.1 && horas <= 2){
+                            alert("El monto a pagar es de $40");
+                            pago = parseInt(prompt("Ingrese el pago"));
 
-                        }if(pago == 40){
-                            alert("Gracias por su visita");
-                            for(let i = 0; i < matriculas.length; i++){
-                                if(matriculas[i] == matricula.toLowerCase()){
-                                    matriculas.splice(i, 1);
-                                    marcas.splice(i, 1);
-                                }
-                            }
-
-                        }if(pago < 40){
-                            alert("El pago es insuficiente");
-                        }
-                    }    
-
-                        if(horas >= 2.1 && horas <= 4){
-                            alert("El monto a pagar es de $90");
-                            pago = prompt("Ingrese el pago");
-
-                            if(pago > 90){
-                                cambio = pago - 90;
+                            if(pago > 40){
+                                cambio = pago - 40;
                                 alert("Su cambio es de: " + cambio + " pesos");
                                 alert("Gracias por su visita");
                                 for(let i = 0; i < matriculas.length; i++){
@@ -124,7 +104,7 @@ function salidaVehiculo(matriculas, marcas){
                                     }
                                 }
 
-                            }if(pago == 90){
+                            }if(pago == 40){
                                 alert("Gracias por su visita");
                                 for(let i = 0; i < matriculas.length; i++){
                                     if(matriculas[i] == matricula.toLowerCase()){
@@ -133,27 +113,47 @@ function salidaVehiculo(matriculas, marcas){
                                     }
                                 }
 
-                            }if(pago < 90){
-                                alert("El pago es insuficiente")
+                            }if(pago < 40){
+                                alert("El pago es insuficiente");
                             }
-                        }
-                        
-                        if(horas >= 4.1){
-                            alert("El monto a pagar es de $150");
-                            pago = prompt("Ingrese el pago");
+                        }    
 
-                            if(pago > 150){
-                            cambio = pago - 150;
-                            alert("Su cambio es de: " + cambio + " pesos");
-                            alert("Gracias por su visita");
-                            for(let i = 0; i < matriculas.length; i++){
-                                if(matriculas[i] == matricula.toLowerCase()){
-                                    matriculas.splice(i, 1);
-                                    marcas.splice(i, 1);
+                            if(horas >= 2.1 && horas <= 4){
+                                alert("El monto a pagar es de $90");
+                                pago = prompt("Ingrese el pago");
+
+                                if(pago > 90){
+                                    cambio = pago - 90;
+                                    alert("Su cambio es de: " + cambio + " pesos");
+                                    alert("Gracias por su visita");
+                                    for(let i = 0; i < matriculas.length; i++){
+                                        if(matriculas[i] == matricula.toLowerCase()){
+                                            matriculas.splice(i, 1);
+                                            marcas.splice(i, 1);
+                                        }
+                                    }
+
+                                }if(pago == 90){
+                                    alert("Gracias por su visita");
+                                    for(let i = 0; i < matriculas.length; i++){
+                                        if(matriculas[i] == matricula.toLowerCase()){
+                                            matriculas.splice(i, 1);
+                                            marcas.splice(i, 1);
+                                        }
+                                    }
+
+                                }if(pago < 90){
+                                    alert("El pago es insuficiente")
                                 }
                             }
+                            
+                            if(horas >= 4.1){
+                                alert("El monto a pagar es de $150");
+                                pago = prompt("Ingrese el pago");
 
-                            }if(pago == 150){
+                                if(pago > 150){
+                                cambio = pago - 150;
+                                alert("Su cambio es de: " + cambio + " pesos");
                                 alert("Gracias por su visita");
                                 for(let i = 0; i < matriculas.length; i++){
                                     if(matriculas[i] == matricula.toLowerCase()){
@@ -162,49 +162,68 @@ function salidaVehiculo(matriculas, marcas){
                                     }
                                 }
 
-                            }if(pago < 150){
-                                alert("El pago es insuficiente")
+                                }if(pago == 150){
+                                    alert("Gracias por su visita");
+                                    for(let i = 0; i < matriculas.length; i++){
+                                        if(matriculas[i] == matricula.toLowerCase()){
+                                            matriculas.splice(i, 1);
+                                            marcas.splice(i, 1);
+                                        }
+                                    }
+
+                                }if(pago < 150){
+                                    alert("El pago es insuficiente")
+                                }
                             }
-                        }
-        } else if (matriculas[i] != matricula.toLowerCase()){
-            alert("Matricula Incorrecta")
-        } else if (matrcula = ""){
-            alert("No puedes dejar campos sin llenar")
+            } else if (matriculas[i] != matricula.toLowerCase()){
+                alert("Matricula Incorrecta")
+            } else if (matrcula = ""){
+                alert("No puedes dejar campos sin llenar")
+            }
+                console.log(matriculas);
+                console.log(marcas);
         }
-            console.log(matriculas);
-            console.log(marcas);
-    }
+   }else{
+    estacionamiento();
+   }
+    
 }
 
 function autos (matriculas, marcas, total){
-    let opc = prompt("1. Vehiculos en el estacionamiento" + "\n" + "2. Buscar vehiculos por placa" + "\n" + "3. Buscar vehiculos por submarca");
+    let opc = prompt("1. Vehiculos en el estacionamiento" + "\n" + "2. Buscar vehiculos por placa" + "\n" + "3. Buscar vehiculos por submarca" + "\n" + "4. Regresar");
     let cont = 0;
     switch (opc) {
 
         case "1":
             alert("Hay " + total + " vehiculos en el estacionamiento");
+            autos(matriculas, marcas, total);
         break;
         case "2":
             if(total >0){
-                let matricula = prompt("Ingrese la placa");
-                for(let i = 0; i < matriculas.length; i++){
-                    if(matriculas[i] == matricula.toLowerCase()){
-                        cont = cont + 1;
-                    }
-                }
-
-                for(let i = 0; i < matriculas.length; i++){
-                    if (cont != 0){
+                let matricula = prompt("Ingrese la placa" + "\n" + "O bien si desea regresar ingrese 'r'");
+                if(matricula != "r"){
+                    if(matricula != "r"){}
+                    for(let i = 0; i < matriculas.length; i++){
                         if(matriculas[i] == matricula.toLowerCase()){
-                            alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
-                        }else if(matricula == ""){
-                            alert("No hay vehiculos con esa placa");
+                            cont = cont + 1;
                         }
-                    }else if(cont == 0){
-                        i = matriculas.length - 1;
-                        alert("No hay vehiculos con esa placa")
                     }
-                        
+
+                    for(let i = 0; i < matriculas.length; i++){
+                        if (cont != 0){
+                            if(matriculas[i] == matricula.toLowerCase()){
+                                alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
+                            }else if(matricula == ""){
+                                alert("No hay vehiculos con esa placa");
+                            }
+                        }else if(cont == 0){
+                            i = matriculas.length - 1;
+                            alert("No hay vehiculos con esa placa")
+                        }
+                            
+                    }
+                }else{
+                    autos(matriculas, marcas, total);
                 }
             }else{
                 alert("No hay vehiculos en el estacionamiento");
@@ -213,7 +232,8 @@ function autos (matriculas, marcas, total){
 
         case "3":
             if(total >0){
-                let marca = prompt("Ingrese la submarca");
+                let marca = prompt("Ingrese la submarca" + "\n" + "O bien si desea regresar ingrese 'r'");
+                if(marca != "r"){
                     for(let i = 0; i < marcas.length; i++){
                         if(marcas[i] == marca.toLowerCase()){
                             cont = cont + 1;
@@ -223,7 +243,7 @@ function autos (matriculas, marcas, total){
                     for(let i = 0; i < marcas.length; i++){
                         if (cont != 0){
                             if(marcas[i] == marca.toLowerCase()){
-                                alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "Presione aceptar para siguiente");
+                                alert("Placa: " + matriculas[i] + "\n" + "Submarca: " + marcas[i] + "\n" + "\n" + "Presione aceptar para siguiente");
                             }else if(marca == ""){
                                 alert("No hay vehiculos con esa submarca")
                             }
@@ -233,9 +253,16 @@ function autos (matriculas, marcas, total){
                         }
                             
                     }
+                }else{
+                    autos(matriculas, marcas, total);
+                }
             }else{
                 alert("No hay vehiculos en el estacionamiento");
             }
+        break;
+
+        case "4":
+            estacionamiento();
         break;
     }
 }
